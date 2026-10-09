@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cheers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root { --page: #F5F5F5; --card: #FFFFFF; --text: #111111; --muted: #6B6B6B; --line: #E4E4E4; --on: #FFFFFF; }
+@media (prefers-color-scheme: dark) { :root { --page: #121212; --card: #1E1E1E; --text: #F2F2F2; --muted: #A0A0A0; --line: #353535; --on: #111111; } }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--text); font: 16px/1.6 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+header, main, footer { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+header { padding-top: 32px; padding-bottom: 24px; }
+.wordmark { font: italic 600 32px Fraunces, Georgia, serif; color: var(--text); text-decoration: none; }
+.card { background: var(--card); border-radius: 24px; padding: 32px 28px; box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06); }
+h1 { font-size: 28px; line-height: 1.2; margin: 0 0 16px; }
+h2 { font-size: 20px; margin: 32px 0 8px; }
+h3 { font-size: 16px; margin: 24px 0 8px; }
+p, ul { margin: 0 0 16px; }
+ul { padding-left: 20px; }
+li { margin-bottom: 4px; }
+a { color: var(--text); }
+table { width: 100%; border-collapse: collapse; margin: 0 0 16px; font-size: 15px; }
+th, td { text-align: left; vertical-align: top; padding: 12px 12px 12px 0; border-bottom: 1px solid var(--line); }
+.lead { font-size: 18px; color: var(--muted); }
+.button { display: inline-block; margin-top: 8px; padding: 16px 28px; border-radius: 999px; background: var(--text); color: var(--on); font-weight: 600; text-decoration: none; }
+.center { text-align: center; }
+footer { padding-top: 24px; padding-bottom: 48px; font-size: 14px; color: var(--muted); }
+footer a { color: var(--muted); margin-right: 16px; }
+</style>
+</head>
+<body>
+<header><a class="wordmark" href="/">Cheers</a></header>
+<main><div class="card">
+<div class="center">
+<h1 id="title">Open this in Cheers</h1>
+<p class="lead" id="lead">This link opens in the Cheers app.</p>
+<p>Cheers is coming soon to iPhone and Android. It’s for people aged 18 and over.</p>
+</div>
+<script>
+  var person = location.pathname.match(/^\/u\/([A-Za-z0-9_]{3,15})\/?$/);
+  var known = person || /^\/p\//.test(location.pathname);
+  if (person) {
+    document.getElementById("title").textContent = "Add @" + person[1] + " on Cheers";
+    document.getElementById("lead").textContent = "Search for @" + person[1] + " on the Friends page in the Cheers app.";
+  } else if (!known) {
+    document.getElementById("title").textContent = "Page not found";
+    document.getElementById("lead").textContent = "There’s nothing at this address.";
+  }
+</script>
+</div></main>
+<footer><a href="/privacy/">Privacy policy</a><a href="/terms/">Terms</a><a href="mailto:hello@cheers-drinks.co.uk">Contact</a></footer>
+</body>
+</html>
