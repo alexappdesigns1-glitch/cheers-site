@@ -3,76 +3,213 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
 <title>Cheers terms of use</title>
+<meta name="description" content="A drink diary you share with friends. Take a photo of your drink, give it a rating, and see what your friends are having.">
+<meta property="og:title" content="Cheers terms of use">
+<meta property="og:description" content="A drink diary you share with friends.">
+<meta property="og:image" content="https://cheers-drinks.co.uk/share.png">
+<meta property="og:url" content="https://cheers-drinks.co.uk/terms/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../icon.png">
+<link rel="apple-touch-icon" href="../icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root { --page: #F5F5F5; --card: #FFFFFF; --text: #111111; --muted: #6B6B6B; --line: #E4E4E4; --on: #FFFFFF; }
-@media (prefers-color-scheme: dark) { :root { --page: #121212; --card: #1E1E1E; --text: #F2F2F2; --muted: #A0A0A0; --line: #353535; --on: #111111; } }
-* { box-sizing: border-box; }
-body { margin: 0; background: var(--page); color: var(--text); font: 16px/1.6 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-header, main, footer { max-width: 720px; margin: 0 auto; padding: 0 20px; }
-header { padding-top: 32px; padding-bottom: 24px; }
-.wordmark { font: italic 600 32px Fraunces, Georgia, serif; color: var(--text); text-decoration: none; }
-.card { background: var(--card); border-radius: 24px; padding: 32px 28px; box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06); }
-h1 { font-size: 28px; line-height: 1.2; margin: 0 0 16px; }
-h2 { font-size: 20px; margin: 32px 0 8px; }
-h3 { font-size: 16px; margin: 24px 0 8px; }
-p, ul { margin: 0 0 16px; }
-ul { padding-left: 20px; }
-li { margin-bottom: 4px; }
-a { color: var(--text); }
-table { width: 100%; border-collapse: collapse; margin: 0 0 16px; font-size: 15px; }
-th, td { text-align: left; vertical-align: top; padding: 12px 12px 12px 0; border-bottom: 1px solid var(--line); }
-.lead { font-size: 18px; color: var(--muted); }
-.button { display: inline-block; margin-top: 8px; padding: 16px 28px; border-radius: 999px; background: var(--text); color: var(--on); font-weight: 600; text-decoration: none; }
-.center { text-align: center; }
-footer { padding-top: 24px; padding-bottom: 48px; font-size: 14px; color: var(--muted); }
-footer a { color: var(--muted); margin-right: 16px; }
+:root { color-scheme: light; --page: #F5F5F5; --card: #FFFFFF; --text: #111111; --muted: #6B6B6B; --line: #E4E4E4; --tile: #F0F0F0; --on: #FFFFFF;
+  --ring: 0 1px 2px rgba(0,0,0,.06), 0 0 0 1px rgba(0,0,0,.05);
+  --lift: 0 1px 2px rgba(0,0,0,.04), 0 10px 30px -22px rgba(0,0,0,.22); }
+* { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--page); color: var(--text); font: 16px/1.5 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+.wm { font: italic 600 22px Fraunces, Georgia, serif; letter-spacing: -.5px; text-decoration: none; }
+
+/* The top bar: a small capsule that stays in view. */
+.cap { position: sticky; top: 12px; z-index: 5; width: fit-content; margin: 16px auto 0; height: 52px; padding: 0 24px 0 20px; border-radius: 999px; background: var(--card); box-shadow: var(--ring), var(--lift); display: flex; align-items: center; gap: 28px; }
+.cap a:not(.wm):not(.get) { font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; }
+.cap a:not(.wm):not(.get):hover { color: var(--text); }
+.cap.has-get { padding-right: 8px; }
+.get { display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border-radius: 999px; background: var(--text); color: var(--on); font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+.get.big { height: 52px; padding: 0 28px; font-size: 16px; }
+a:focus-visible { outline: 2px solid var(--text); outline-offset: 4px; border-radius: 8px; }
+
+.tag { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px; border-radius: 999px; background: var(--tile); font-size: 13px; font-weight: 600; white-space: nowrap; }
+.tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--muted); }
+h1 { font-size: clamp(32px, 6.4vw, 64px); line-height: 1.04; letter-spacing: -.035em; font-weight: 700; text-wrap: balance; }
+h2 { font-size: clamp(24px, 3.6vw, 36px); letter-spacing: -.025em; line-height: 1.1; text-wrap: balance; }
+.lead { font-size: clamp(16px, 2vw, 19px); color: var(--muted); max-width: 30em; text-wrap: pretty; }
+
+.hero { text-align: center; padding-top: 56px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.window { align-self: stretch; margin-top: 32px; background: var(--card); border-radius: 28px; box-shadow: var(--lift); display: flex; justify-content: center; align-items: flex-end; gap: 32px; padding: 48px 24px; }
+section { padding-top: 72px; }
+
+/* A real screenshot inside the iPhone frame. The screen opening matches an
+   iPhone Pro screenshot (1206 by 2622), so one fits without cropping. */
+.ph { width: 232px; max-width: 100%; aspect-ratio: 1350 / 2760; flex: none; position: relative; }
+.window .ph { filter: drop-shadow(0 20px 20px rgba(0,0,0,.16)); }
+.window .side { width: 196px; }
+.ph .scr { position: absolute; left: 5.333%; top: 2.5%; width: 89.334%; height: 95%; border-radius: 15.8% / 7.3%; overflow: hidden; background: var(--tile); display: grid; place-items: center; text-align: center; font-size: 12px; font-weight: 500; color: var(--muted); padding: 8px; }
+.ph .scr.has { padding: 0; display: block; }
+.ph .scr img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.ph .frame { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; list-style: none; padding: 0; }
+.step { background: var(--card); border-radius: 24px; box-shadow: var(--lift); padding: 12px 12px 24px; }
+.tile { background: var(--tile); border-radius: 16px; padding: 28px 16px; display: grid; place-items: center; margin-bottom: 16px; }
+.tile .ph { width: 188px; }
+.tile .scr { background: var(--card); }
+.step i { font-style: normal; font-weight: 600; font-size: 12px; width: 24px; height: 24px; border-radius: 50%; background: var(--tile); display: grid; place-items: center; margin: 0 8px; }
+.step h3 { font-size: 18px; letter-spacing: -.01em; margin: 12px 8px 4px; }
+.step p { font-size: 15px; color: var(--muted); margin: 0 8px; }
+
+.bento { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+.bcard { background: var(--card); border-radius: 24px; box-shadow: var(--lift); padding: 32px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; }
+.bcard h3 { font-size: 21px; letter-spacing: -.02em; line-height: 1.2; }
+.bcard p { font-size: 15px; color: var(--muted); max-width: 26em; }
+.bcard .ph { margin-top: 16px; width: 196px; }
+/* Phones line up along the bottom of a row, however long the text above. */
+.bcard:not(.span) p { margin-bottom: 8px; }
+.bcard:not(.span) .ph { margin-top: auto; }
+.bcard.span { grid-column: 1 / -1; flex-direction: row; justify-content: space-between; text-align: left; gap: 32px; padding: 40px 64px; }
+.bcard.span > div:first-child { display: flex; flex-direction: column; gap: 8px; }
+.bcard.span h3 { font-size: 30px; }
+.bcard.span p { font-size: 17px; }
+.bcard.span .ph { margin: 0; width: 232px; }
+.bcard.span.flip { flex-direction: row-reverse; }
+.bento.three { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+
+.ctrl { display: grid; grid-template-columns: 1fr 1.3fr; gap: 32px; background: var(--card); border-radius: 24px; box-shadow: var(--lift); padding: 40px; }
+.more { display: inline-block; margin-top: 12px; font-size: 15px; font-weight: 600; text-underline-offset: 3px; }
+.ticks { list-style: none; padding: 0; }
+.ticks li { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.ticks li:first-child { padding-top: 0; } .ticks li:last-child { border-bottom: 0; padding-bottom: 0; }
+.ticks svg { width: 20px; height: 20px; flex: none; stroke: var(--text); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; margin-top: 2px; }
+
+.mid { text-align: center; }
+.faq { max-width: 640px; margin: 24px auto 0; }
+.q { border-bottom: 1px solid var(--line); }
+.q h3 { font-size: 16px; }
+.q button { all: unset; box-sizing: border-box; width: 100%; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 0; font-weight: 600; }
+.q button:focus-visible { outline: 2px solid var(--text); outline-offset: 4px; border-radius: 8px; }
+/* The plus turns into a minus: its upright bar swings flat. */
+.q .ic { width: 28px; height: 28px; flex: none; border-radius: 50%; background: var(--tile); position: relative; }
+.q .ic::before, .q .ic::after { content: ""; position: absolute; left: 9px; top: 13px; width: 10px; height: 2px; border-radius: 1px; background: var(--text); transition: transform .35s cubic-bezier(.2, .8, .2, 1); }
+.q .ic::after { transform: rotate(90deg); }
+.q.open .ic::after { transform: rotate(0deg); }
+/* The answer slides open: its row grows from nothing to its own height. */
+.q .a { display: grid; grid-template-rows: 1fr; transition: grid-template-rows .35s cubic-bezier(.2, .8, .2, 1); }
+.q .a > div { overflow: hidden; transition: opacity .25s ease, visibility .35s; }
+.js .q:not(.open) .a { grid-template-rows: 0fr; }
+.js .q:not(.open) .a > div { opacity: 0; visibility: hidden; }
+.q p { color: var(--muted); padding: 0 44px 16px 0; }
+@media (prefers-reduced-motion: reduce) { .q .a, .q .a > div, .q .ic::before, .q .ic::after { transition: none; } }
+
+.close { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+footer { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 72px 24px 40px; font-size: 14px; color: var(--muted); text-align: center; }
+footer .wm { color: var(--text); font-size: 26px; }
+footer div { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px; }
+
+/* The invite and post link page. */
+.inv { max-width: 440px; margin: 40px auto 0; background: var(--card); border-radius: 28px; box-shadow: var(--lift); padding: 40px 24px 24px; text-align: center; }
+.at { width: 72px; height: 72px; border-radius: 50%; background: var(--tile); display: grid; place-items: center; font-weight: 700; font-size: 28px; margin: 0 auto 16px; }
+.inv h1 { font-size: 30px; }
+.inv .lead { margin: 8px auto 20px; font-size: 16px; }
+.inv ol { list-style: none; padding: 0; text-align: left; margin-top: 24px; border-top: 1px solid var(--line); }
+.inv li { display: flex; gap: 12px; align-items: center; padding: 12px 4px; border-bottom: 1px solid var(--line); font-size: 15px; }
+.inv li:last-child { border-bottom: 0; }
+.inv li i { font-style: normal; font-weight: 600; font-size: 12px; width: 24px; height: 24px; flex: none; border-radius: 50%; background: var(--tile); display: grid; place-items: center; }
+.inv .get { width: 100%; justify-content: center; }
+[hidden] { display: none !important; }
+
+/* The privacy policy and terms. */
+.legal { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 32px; align-items: start; margin-top: 40px; }
+.toc { position: sticky; top: 88px; font-size: 14px; }
+.toc b { display: block; margin-bottom: 8px; }
+.toc a { display: block; padding: 4px 0; color: var(--muted); text-decoration: none; }
+.toc a:hover { color: var(--text); }
+.doc { background: var(--card); border-radius: 28px; box-shadow: var(--lift); padding: 40px; line-height: 1.6; }
+.doc > * { max-width: 68ch; }
+.doc h1 { font-size: 32px; letter-spacing: -.02em; margin-bottom: 16px; }
+.doc h2 { font-size: 21px; letter-spacing: -.01em; margin: 32px 0 8px; }
+.doc h3 { font-size: 16px; margin: 24px 0 8px; }
+.doc p, .doc ul { margin-bottom: 16px; }
+.doc ul { padding-left: 20px; }
+.doc li { margin-bottom: 4px; }
+.doc .wide { max-width: none; overflow-x: auto; }
+.doc table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 15px; }
+.doc th, .doc td { text-align: left; vertical-align: top; padding: 12px 12px 12px 0; border-bottom: 1px solid var(--line); }
+
+@media (max-width: 720px) {
+  .wrap { padding: 0 16px; }
+  .cap { gap: 16px; padding: 0 20px 0 16px; }
+  .cap a:not(.wm):not(.get) { font-size: 13px; }
+  .cap.has-get a:not(.wm):not(.get) { display: none; }
+  .hero { padding-top: 40px; }
+  section { padding-top: 56px; }
+  .window { border-radius: 24px; padding: 32px 16px; }
+  .window .side { display: none; }
+  .steps, .bento { grid-template-columns: 1fr; }
+  .bcard, .bcard.span, .bcard.span.flip { flex-direction: column; text-align: center; padding: 28px; }
+  .bcard.span h3 { font-size: 23px; } .bcard.span p { font-size: 15px; }
+  .bcard.span .ph { margin-top: 16px; width: 196px; }
+  .ctrl { grid-template-columns: 1fr; padding: 24px; gap: 20px; }
+  .legal { grid-template-columns: 1fr; gap: 16px; margin-top: 24px; }
+  .toc { position: static; background: var(--card); border-radius: 20px; box-shadow: var(--lift); padding: 20px; }
+  .doc { padding: 28px 20px; border-radius: 24px; }
+}
 </style>
 </head>
 <body>
-<header><a class="wordmark" href="/">Cheers</a></header>
-<main><div class="card">
+<nav class="cap" aria-label="Cheers"><a class="wm" href="../">Cheers</a><a href="../#how">How it works</a><a href="../#questions">Questions</a></nav>
+<main class="wrap">
+<div class="legal">
+<nav class="toc" aria-label="On this page"><b>On this page</b><a href="#1-who-can-use-cheers">1. Who can use Cheers</a><a href="#2-your-account">2. Your account</a><a href="#3-what-you-post">3. What you post</a><a href="#4-rules-for-everyone">4. Rules for everyone</a><a href="#5-reporting-blocking-and-what-we-do-about-it">5. Reporting, blocking and what we do about it</a><a href="#6-the-details-you-log">6. The details you log</a><a href="#7-drinking-responsibly">7. Drinking responsibly</a><a href="#8-the-app-itself">8. The app itself</a><a href="#9-if-things-go-wrong">9. If things go wrong</a><a href="#10-ending-these-terms">10. Ending these terms</a><a href="#11-changes-to-these-terms">11. Changes to these terms</a><a href="#12-the-law-that-applies">12. The law that applies</a><a href="#13-apple-s-and-google-s-terms">13. Apple's and Google's terms</a></nav>
+<article class="doc">
 <h1>Cheers terms of use</h1>
 <p>Last updated: 9 October 2026</p>
 <p>These are the terms for using Cheers, an app for logging the drinks you have and sharing them with your friends. By creating an account you agree to them. If you don't agree, please don't use Cheers.</p>
 <p>Cheers is run by Alex Pearson, based in the United Kingdom ("we", "us"). You can reach us at <a href="mailto:hello@cheers-drinks.co.uk">hello@cheers-drinks.co.uk</a>.</p>
-<h2>1. Who can use Cheers</h2>
+<h2 id="1-who-can-use-cheers">1. Who can use Cheers</h2>
 <p>You must be 18 or over, and old enough to drink alcohol legally where you live. You must give your real birthday when you sign up. We may close any account we believe belongs to someone under 18.</p>
-<h2>2. Your account</h2>
+<h2 id="2-your-account">2. Your account</h2>
 <ul><li>Keep your password to yourself. You're responsible for what happens on your account.</li><li>Give accurate details, and don't pretend to be someone else.</li><li>One person, one account. Don't create accounts by automated means.</li><li>You can delete your account at any time in the app: Settings, then Account Details, then Delete Account.</li></ul>
-<h2>3. What you post</h2>
+<h2 id="3-what-you-post">3. What you post</h2>
 <p>What you post is yours: your photos, ratings, notes and comments. By posting it, you give us permission to store it and show it to your friends on Cheers, which is what the app is for. That permission ends when you delete the post or your account.</p>
 <p>You're responsible for what you post. Only post photos and words you have the right to share.</p>
-<h2>4. Rules for everyone</h2>
+<h2 id="4-rules-for-everyone">4. Rules for everyone</h2>
 <p>Don't use Cheers to:</p>
 <ul><li>harass, bully, threaten or abuse anyone</li><li>post anything hateful, sexually explicit, violent or illegal</li><li>post anything that encourages under-age drinking, drink-driving, or dangerous or excessive drinking</li><li>post someone else's private information, or photos of people who wouldn't want them shared</li><li>send spam or advertising</li><li>sell alcohol, or arrange its sale</li><li>try to break, overload or get around the app's limits and protections, or collect other people's information from it</li></ul>
-<h2>5. Reporting, blocking and what we do about it</h2>
+<h2 id="5-reporting-blocking-and-what-we-do-about-it">5. Reporting, blocking and what we do about it</h2>
 <p>You can report a person, a post or a comment in the app, and you can block anyone. We look at reports and aim to act on them within 24 hours.</p>
 <p>If someone breaks these terms, we may remove what they posted, and suspend or close their account. For serious cases we may do so without warning. If you think we've got a decision wrong, email <a href="mailto:hello@cheers-drinks.co.uk">hello@cheers-drinks.co.uk</a>.</p>
-<h2>6. The AI label reader</h2>
-<p>Cheers can read a drink's label from a photo and fill in its name and type for you. It can get things wrong. Nothing is saved until you've checked it and confirmed.</p>
+<h2 id="6-the-details-you-log">6. The details you log</h2>
 <p>Details such as a drink's strength (ABV) are there for your own record. Don't rely on Cheers for anything where the exact figure matters, such as deciding whether you're safe to drive. If in doubt, check the label.</p>
-<p>There's a daily limit on label reads per person.</p>
-<h2>7. Drinking responsibly</h2>
+<h2 id="7-drinking-responsibly">7. Drinking responsibly</h2>
 <p>Cheers is a diary and a way to share what you enjoy. It isn't health advice, and it doesn't encourage you to drink more. If you're worried about your drinking, Drinkaware (<a href="https://drinkaware.co.uk">drinkaware.co.uk</a>) offers free advice, and your GP can help.</p>
-<h2>8. The app itself</h2>
+<h2 id="8-the-app-itself">8. The app itself</h2>
 <p>Cheers, its design and its name belong to us. You may use the app for your own personal, non-commercial use. Please don't copy it, take it apart, or build something else from it.</p>
 <p>Cheers is free to use.</p>
-<h2>9. If things go wrong</h2>
+<h2 id="9-if-things-go-wrong">9. If things go wrong</h2>
 <p>We work to keep Cheers running and your log safe, but we provide it "as is". We can't promise it will always be available or free of mistakes, and we may change or withdraw features.</p>
 <p>Nothing in these terms limits our liability where the law says it can't be limited, such as for death or personal injury caused by our negligence, or for fraud. Nor do they affect your legal rights as a consumer.</p>
 <p>Beyond that, because Cheers is free, we aren't liable for losses we couldn't reasonably have foreseen, or for losses connected to a business.</p>
-<h2>10. Ending these terms</h2>
+<h2 id="10-ending-these-terms">10. Ending these terms</h2>
 <p>You can stop using Cheers and delete your account whenever you like. We can suspend or close your account if you break these terms. If we ever close Cheers down altogether, we'll give you reasonable notice where we can.</p>
-<h2>11. Changes to these terms</h2>
+<h2 id="11-changes-to-these-terms">11. Changes to these terms</h2>
 <p>If we change these terms in a way that matters, we'll tell you in the app or by email before the change takes effect. If you keep using Cheers after that, you accept the new terms.</p>
-<h2>12. The law that applies</h2>
+<h2 id="12-the-law-that-applies">12. The law that applies</h2>
 <p>These terms are governed by the law of England and Wales. If you live in Scotland or Northern Ireland you can also bring a claim in your local courts.</p>
-<h2>13. Apple's and Google's terms</h2>
+<h2 id="13-apple-s-and-google-s-terms">13. Apple's and Google's terms</h2>
 <p>If you got Cheers from the App Store or Google Play, their terms apply to the download too. These terms are between you and us, not Apple or Google, and they aren't responsible for the app or for supporting it.</p>
-</div></main>
-<footer><a href="/privacy/">Privacy policy</a><a href="/terms/">Terms</a><a href="mailto:hello@cheers-drinks.co.uk">Contact</a></footer>
+</article>
+</div>
+</main>
+<footer><a class="wm" href="../">Cheers</a><div><a href="../privacy/">Privacy policy</a><a href="../terms/">Terms</a><a href="mailto:hello@cheers-drinks.co.uk">Contact</a></div><span>For people aged 18 and over</span></footer>
 </body>
 </html>
