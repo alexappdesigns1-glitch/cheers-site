@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
 <title>Cheers</title>
-<meta name="description" content="A drink diary you share with friends. Take a photo of your drink, give it a rating, and see what your friends are having.">
+<meta name="description" content="Rate your drinks. Share them with friends. Take a photo of your drink, give it a rating, and see what your friends are having.">
 <meta property="og:title" content="Cheers">
-<meta property="og:description" content="A drink diary you share with friends.">
+<meta property="og:description" content="Rate your drinks. Share them with friends.">
 <meta property="og:image" content="https://cheers-drinks.co.uk/share.png">
 <meta property="og:url" content="https://cheers-drinks.co.uk/">
 <meta property="og:type" content="website">
@@ -182,7 +182,7 @@ footer div { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 2
   var at = document.getElementById("at");
   if (person) {
     document.getElementById("title").textContent = "Add @" + person[1] + " on Cheers";
-    document.getElementById("lead").textContent = "Cheers is a drink diary you share with friends.";
+    document.getElementById("lead").textContent = "Cheers is where you rate your drinks and share them with friends.";
     document.getElementById("search").textContent = "Search for @" + person[1] + " and add them";
     document.getElementById("steps").hidden = false;
   } else if (post) {
