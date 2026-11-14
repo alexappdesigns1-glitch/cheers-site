@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root { color-scheme: light; --page: #F5F5F5; --card: #FFFFFF; --text: #111111; --muted: #6B6B6B; --line: #E4E4E4; --tile: #F0F0F0; --on: #FFFFFF;
+:root { color-scheme: light; --copper: #C26000; --page: #F5F5F5; --card: #FFFFFF; --text: #111111; --muted: #6B6B6B; --line: #E4E4E4; --tile: #F0F0F0; --on: #FFFFFF;
   --ring: 0 1px 2px rgba(0,0,0,.06), 0 0 0 1px rgba(0,0,0,.05);
   --lift: 0 1px 2px rgba(0,0,0,.04), 0 10px 30px -22px rgba(0,0,0,.22); }
 * { box-sizing: border-box; margin: 0; }
@@ -28,7 +28,13 @@ body { background: var(--page); color: var(--text); font: 16px/1.5 Inter, -apple
 a { color: inherit; }
 img { display: block; max-width: 100%; }
 .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-.wm { font: italic 600 22px Fraunces, Georgia, serif; letter-spacing: -.5px; text-decoration: none; }
+.wm { font: italic 600 22px Fraunces, Georgia, serif; letter-spacing: -.5px; text-decoration: none; display: inline-flex; align-items: flex-end; }
+/* The copper rating star after the wordmark, as in the app and on its icon. */
+.wm svg { width: .34em; height: .34em; margin: 0 0 .26em .04em; fill: var(--copper); flex: none; }
+/* Copper only where it means what it means in the app: rating. The
+   headline's star sits up by "Rate", like the wordmark's after "Cheers". */
+.hstar { display: inline-block; width: .32em; height: .32em; fill: var(--copper); margin: 0 .02em 0 .06em; vertical-align: .62em; }
+.istar { display: inline-block; width: .8em; height: .8em; fill: var(--copper); margin-left: .25em; vertical-align: -.05em; }
 
 /* The top bar: a small capsule that stays in view. */
 .cap { position: sticky; top: 12px; z-index: 5; width: fit-content; margin: 16px auto 0; height: 52px; padding: 0 24px 0 20px; border-radius: 999px; background: var(--card); box-shadow: var(--ring), var(--lift); display: flex; align-items: center; gap: 28px; }
@@ -167,11 +173,11 @@ footer div { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 2
 </style>
 </head>
 <body>
-<nav class="cap" aria-label="Cheers"><a class="wm" href="./">Cheers</a><a href="#how">How it works</a><a href="#questions">Questions</a></nav>
+<nav class="cap" aria-label="Cheers"><a class="wm" href="./" aria-label="Cheers">Cheers<svg viewBox="0 0 256 256" aria-hidden="true"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"/></svg></a><a href="#how">How it works</a><a href="#questions">Questions</a></nav>
 <main class="wrap">
 <div class="hero">
   <span class="tag">Coming soon to iPhone</span>
-  <h1>Rate your drinks.<br>Share them with friends.</h1>
+  <h1>Rate<svg class="hstar" viewBox="0 0 256 256" aria-hidden="true"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"/></svg> your drinks.<br>Share them with friends.</h1>
   <p class="lead">Take a photo of your drink, give it a rating, and see what your friends are having.</p>
   <div class="window"><div class="ph side"><div class="scr has"><img src="img/screen-rating.jpg" alt="The rating form, with a rating being chosen" loading="lazy"></div><img class="frame" src="img/phone-frame.png" alt=""></div><div class="ph"><div class="scr has"><img src="img/screen-home.jpg" alt="The Cheers Home page, showing friends’ drinks" loading="lazy"></div><img class="frame" src="img/phone-frame.png" alt=""></div><div class="ph side"><div class="scr has"><img src="img/screen-profile.jpg" alt="A Cheers profile, with its top rated drinks" loading="lazy"></div><img class="frame" src="img/phone-frame.png" alt=""></div></div>
 </div>
@@ -180,7 +186,7 @@ footer div { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 2
   <h2>How it works</h2>
   <ol class="steps">
     <li class="step"><div class="tile"><div class="ph"><div class="scr has"><img src="img/screen-camera.jpg" alt="The Cheers camera, pointed at a drink" loading="lazy"></div><img class="frame" src="img/phone-frame.png" alt=""></div></div><i>1</i><h3>Take a photo</h3><p>Point your phone at the bottle, can or glass.</p></li>
-    <li class="step"><div class="tile"><div class="ph"><div class="scr has"><img src="img/screen-rating.jpg" alt="The rating form, with a rating being chosen" loading="lazy"></div><img class="frame" src="img/phone-frame.png" alt=""></div></div><i>2</i><h3>Rate it</h3><p>Name it, give it a score out of 10, and add a caption or a place if you like.</p></li>
+    <li class="step"><div class="tile"><div class="ph"><div class="scr has"><img src="img/screen-rating.jpg" alt="The rating form, with a rating being chosen" loading="lazy"></div><img class="frame" src="img/phone-frame.png" alt=""></div></div><i>2</i><h3>Rate it<svg class="istar" viewBox="0 0 256 256" aria-hidden="true"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"/></svg></h3><p>Name it, give it a score out of 10, and add a caption or a place if you like.</p></li>
     <li class="step"><div class="tile"><div class="ph"><div class="scr has"><img src="img/screen-post.jpg" alt="A finished post on Cheers" loading="lazy"></div><img class="frame" src="img/phone-frame.png" alt=""></div></div><i>3</i><h3>Post it</h3><p>Your friends see it on their Home page.</p></li>
   </ol>
 </section>
@@ -238,6 +244,6 @@ footer div { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 2
   <span class="tag">Coming soon to iPhone</span>
 </section>
 </main>
-<footer><a class="wm" href="./">Cheers</a><div><a href="privacy/">Privacy policy</a><a href="terms/">Terms</a><a href="mailto:hello@cheers-drinks.co.uk">Contact</a></div><span>For people aged 18 and over</span></footer>
+<footer><a class="wm" href="./" aria-label="Cheers">Cheers<svg viewBox="0 0 256 256" aria-hidden="true"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"/></svg></a><div><a href="privacy/">Privacy policy</a><a href="terms/">Terms</a><a href="mailto:hello@cheers-drinks.co.uk">Contact</a></div><span>For people aged 18 and over</span></footer>
 </body>
 </html>

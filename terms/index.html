@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root { color-scheme: light; --page: #F5F5F5; --card: #FFFFFF; --text: #111111; --muted: #6B6B6B; --line: #E4E4E4; --tile: #F0F0F0; --on: #FFFFFF;
+:root { color-scheme: light; --copper: #C26000; --page: #F5F5F5; --card: #FFFFFF; --text: #111111; --muted: #6B6B6B; --line: #E4E4E4; --tile: #F0F0F0; --on: #FFFFFF;
   --ring: 0 1px 2px rgba(0,0,0,.06), 0 0 0 1px rgba(0,0,0,.05);
   --lift: 0 1px 2px rgba(0,0,0,.04), 0 10px 30px -22px rgba(0,0,0,.22); }
 * { box-sizing: border-box; margin: 0; }
@@ -28,7 +28,13 @@ body { background: var(--page); color: var(--text); font: 16px/1.5 Inter, -apple
 a { color: inherit; }
 img { display: block; max-width: 100%; }
 .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-.wm { font: italic 600 22px Fraunces, Georgia, serif; letter-spacing: -.5px; text-decoration: none; }
+.wm { font: italic 600 22px Fraunces, Georgia, serif; letter-spacing: -.5px; text-decoration: none; display: inline-flex; align-items: flex-end; }
+/* The copper rating star after the wordmark, as in the app and on its icon. */
+.wm svg { width: .34em; height: .34em; margin: 0 0 .26em .04em; fill: var(--copper); flex: none; }
+/* Copper only where it means what it means in the app: rating. The
+   headline's star sits up by "Rate", like the wordmark's after "Cheers". */
+.hstar { display: inline-block; width: .32em; height: .32em; fill: var(--copper); margin: 0 .02em 0 .06em; vertical-align: .62em; }
+.istar { display: inline-block; width: .8em; height: .8em; fill: var(--copper); margin-left: .25em; vertical-align: -.05em; }
 
 /* The top bar: a small capsule that stays in view. */
 .cap { position: sticky; top: 12px; z-index: 5; width: fit-content; margin: 16px auto 0; height: 52px; padding: 0 24px 0 20px; border-radius: 999px; background: var(--card); box-shadow: var(--ring), var(--lift); display: flex; align-items: center; gap: 28px; }
@@ -167,7 +173,7 @@ footer div { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 2
 </style>
 </head>
 <body>
-<nav class="cap" aria-label="Cheers"><a class="wm" href="../">Cheers</a><a href="../#how">How it works</a><a href="../#questions">Questions</a></nav>
+<nav class="cap" aria-label="Cheers"><a class="wm" href="../" aria-label="Cheers">Cheers<svg viewBox="0 0 256 256" aria-hidden="true"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"/></svg></a><a href="../#how">How it works</a><a href="../#questions">Questions</a></nav>
 <main class="wrap">
 <div class="legal">
 <nav class="toc" aria-label="On this page"><b>On this page</b><a href="#1-who-can-use-cheers">1. Who can use Cheers</a><a href="#2-your-account">2. Your account</a><a href="#3-what-you-post">3. What you post</a><a href="#4-rules-for-everyone">4. Rules for everyone</a><a href="#5-reporting-blocking-and-what-we-do-about-it">5. Reporting, blocking and what we do about it</a><a href="#6-the-details-you-add">6. The details you add</a><a href="#7-drinking-responsibly">7. Drinking responsibly</a><a href="#8-the-app-itself">8. The app itself</a><a href="#9-if-things-go-wrong">9. If things go wrong</a><a href="#10-ending-these-terms">10. Ending these terms</a><a href="#11-changes-to-these-terms">11. Changes to these terms</a><a href="#12-the-law-that-applies">12. The law that applies</a><a href="#13-if-you-got-cheers-from-apple-s-app-store">13. If you got Cheers from Apple's App Store</a></nav>
@@ -213,6 +219,6 @@ footer div { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 2
 </article>
 </div>
 </main>
-<footer><a class="wm" href="../">Cheers</a><div><a href="../privacy/">Privacy policy</a><a href="../terms/">Terms</a><a href="mailto:hello@cheers-drinks.co.uk">Contact</a></div><span>For people aged 18 and over</span></footer>
+<footer><a class="wm" href="../" aria-label="Cheers">Cheers<svg viewBox="0 0 256 256" aria-hidden="true"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"/></svg></a><div><a href="../privacy/">Privacy policy</a><a href="../terms/">Terms</a><a href="mailto:hello@cheers-drinks.co.uk">Contact</a></div><span>For people aged 18 and over</span></footer>
 </body>
 </html>
