@@ -53,15 +53,23 @@ img { display: block; max-width: 100%; }
 .get.big { height: 52px; padding: 0 28px; font-size: 16px; }
 /* The light/dark switch at the end of the top bar: a sun on the knob in
    light, sliding across to a moon in dark. */
-.theme { all: unset; box-sizing: border-box; position: relative; width: 56px; height: 32px; flex: none; margin-right: -8px; border-radius: 999px; background: var(--tile); cursor: pointer; }
-.theme .knob { position: absolute; top: 4px; left: 4px; width: 24px; height: 24px; border-radius: 50%; background: var(--card); box-shadow: 0 1px 3px rgba(0,0,0,.18), 0 0 0 1px rgba(0,0,0,.04); display: grid; place-items: center; color: var(--text); transition: transform .3s cubic-bezier(.2, .8, .2, 1); }
+.theme { all: unset; box-sizing: border-box; position: relative; width: 56px; height: 32px; flex: none; margin-right: -8px; border-radius: 999px; background: var(--tile); cursor: pointer; transition: background-color .45s ease; }
+/* The knob glides across while its colour and icon cross-fade, all on the
+   same easing, so nothing jumps. */
+.theme .knob { position: absolute; top: 4px; left: 4px; width: 24px; height: 24px; border-radius: 50%; background: var(--card); box-shadow: 0 1px 3px rgba(0,0,0,.18), 0 0 0 1px rgba(0,0,0,.04); color: var(--text); transition: transform .45s cubic-bezier(.65, 0, .35, 1), width .2s ease, background-color .45s ease, color .45s ease; }
 .is-dark .theme .knob { transform: translateX(24px); background: var(--text); color: var(--on); }
+.theme:active .knob { width: 28px; }
+.is-dark .theme:active .knob { transform: translateX(20px); }
 .theme:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
-.theme svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-.theme .moon, .is-dark .theme .sun { display: none; }
-.is-dark .theme .moon { display: block; }
+.theme svg { position: absolute; left: 50%; top: 50%; width: 16px; height: 16px; margin: -8px 0 0 -8px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transition: opacity .3s ease, transform .45s cubic-bezier(.65, 0, .35, 1); }
+.theme .moon { opacity: 0; transform: rotate(-90deg) scale(.5); }
+.is-dark .theme .sun { opacity: 0; transform: rotate(90deg) scale(.5); }
+.is-dark .theme .moon { opacity: 1; transform: none; }
 .cap.has-get .theme { margin-right: 0; }
-@media (prefers-reduced-motion: reduce) { .theme .knob { transition: none; } }
+/* While switching, the whole page eases between its colours rather than
+   snapping (only then, so nothing else on the page is slowed). */
+.theme-fading body, .theme-fading body *:not(.knob):not(svg):not(svg *) { transition: background-color .45s ease, color .45s ease, box-shadow .45s ease, border-color .45s ease !important; }
+@media (prefers-reduced-motion: reduce) { .theme .knob, .theme svg, .theme { transition: none !important; } .theme-fading body, .theme-fading body * { transition: none !important; } }
 a:focus-visible { outline: 2px solid var(--text); outline-offset: 4px; border-radius: 8px; }
 
 .tag { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px; border-radius: 999px; background: var(--tile); font-size: 13px; font-weight: 600; white-space: nowrap; }
@@ -235,8 +243,12 @@ footer div { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 2
       s.media = chosen() ? (dark ? "all" : "not all") : "(prefers-color-scheme: dark)";
     });
   }
+  var fading;
   button.addEventListener("click", function () {
     var next = root.classList.contains("is-dark") ? "light" : "dark";
+    root.classList.add("theme-fading");
+    clearTimeout(fading);
+    fading = setTimeout(function () { root.classList.remove("theme-fading"); }, 600);
     root.setAttribute("data-theme", next);
     try { localStorage.setItem("theme", next); } catch (e) {}
     show();
