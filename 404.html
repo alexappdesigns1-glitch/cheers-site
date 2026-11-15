@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light">
+<meta name="color-scheme" content="light dark">
 <title>Cheers</title>
 <meta name="description" content="Rate your drinks. Share them with friends. Take a photo of your drink, give it a rating, and see what your friends are having.">
 <meta property="og:title" content="Cheers">
@@ -21,6 +21,13 @@
 :root { color-scheme: light; --copper: #C26000; --page: #F5F5F5; --card: #FFFFFF; --text: #111111; --muted: #6B6B6B; --line: #E4E4E4; --tile: #F0F0F0; --on: #FFFFFF;
   --ring: 0 1px 2px rgba(0,0,0,.06), 0 0 0 1px rgba(0,0,0,.05);
   --lift: 0 1px 2px rgba(0,0,0,.04), 0 10px 30px -22px rgba(0,0,0,.22); }
+/* Dark, as in the app: shadows don't show, so each becomes a faint light edge. */
+@media (prefers-color-scheme: dark) {
+  :root { color-scheme: dark; --copper: #E8862E; --page: #121212; --card: #1E1E1E; --text: #F2F2F2; --muted: #A0A0A0; --line: #353535; --tile: #2A2A2A; --on: #111111;
+    --ring: 0 0 0 1px rgba(255,255,255,.08);
+    --lift: 0 0 0 1px rgba(255,255,255,.04); }
+  :root .window .ph { filter: drop-shadow(0 20px 24px rgba(0,0,0,.5)); }
+}
 * { box-sizing: border-box; margin: 0; }
 html { scroll-behavior: smooth; scroll-padding-top: 88px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
