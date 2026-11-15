@@ -21,13 +21,14 @@
 :root { color-scheme: light; --copper: #C26000; --page: #F5F5F5; --card: #FFFFFF; --text: #111111; --muted: #6B6B6B; --line: #E4E4E4; --tile: #F0F0F0; --on: #FFFFFF;
   --ring: 0 1px 2px rgba(0,0,0,.06), 0 0 0 1px rgba(0,0,0,.05);
   --lift: 0 1px 2px rgba(0,0,0,.04), 0 10px 30px -22px rgba(0,0,0,.22); }
-/* Dark, as in the app: shadows don't show, so each becomes a faint light edge. */
+/* Dark, as in the app: shadows don't show, so each becomes a faint light edge.
+   It follows the device unless the sun/moon button has chosen one. */
 @media (prefers-color-scheme: dark) {
-  :root { color-scheme: dark; --copper: #E8862E; --page: #121212; --card: #1E1E1E; --text: #F2F2F2; --muted: #A0A0A0; --line: #353535; --tile: #2A2A2A; --on: #111111;
-    --ring: 0 0 0 1px rgba(255,255,255,.08);
-    --lift: 0 0 0 1px rgba(255,255,255,.04); }
-  :root .window .ph { filter: drop-shadow(0 20px 24px rgba(0,0,0,.5)); }
+  :root:not([data-theme="light"]) { color-scheme: dark; --copper: #E8862E; --page: #121212; --card: #1E1E1E; --text: #F2F2F2; --muted: #A0A0A0; --line: #353535; --tile: #2A2A2A; --on: #111111; --ring: 0 0 0 1px rgba(255,255,255,.08); --lift: 0 0 0 1px rgba(255,255,255,.04); }
+  :root:not([data-theme="light"]) .window .ph { filter: drop-shadow(0 20px 24px rgba(0,0,0,.5)); }
 }
+:root[data-theme="dark"] { color-scheme: dark; --copper: #E8862E; --page: #121212; --card: #1E1E1E; --text: #F2F2F2; --muted: #A0A0A0; --line: #353535; --tile: #2A2A2A; --on: #111111; --ring: 0 0 0 1px rgba(255,255,255,.08); --lift: 0 0 0 1px rgba(255,255,255,.04); }
+:root[data-theme="dark"] .window .ph { filter: drop-shadow(0 20px 24px rgba(0,0,0,.5)); }
 * { box-sizing: border-box; margin: 0; }
 html { scroll-behavior: smooth; scroll-padding-top: 88px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -50,6 +51,14 @@ img { display: block; max-width: 100%; }
 .cap.has-get { padding-right: 8px; }
 .get { display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border-radius: 999px; background: var(--text); color: var(--on); font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; }
 .get.big { height: 52px; padding: 0 28px; font-size: 16px; }
+/* The light/dark button at the end of the top bar. */
+.theme { all: unset; box-sizing: border-box; width: 36px; height: 36px; margin-right: -12px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; color: var(--muted); }
+.theme:hover { color: var(--text); background: var(--tile); }
+.theme:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+.theme svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.theme .sun, .is-dark .theme .moon { display: none; }
+.is-dark .theme .sun { display: block; }
+.cap.has-get .theme { margin-right: 0; }
 a:focus-visible { outline: 2px solid var(--text); outline-offset: 4px; border-radius: 8px; }
 
 .tag { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px; border-radius: 999px; background: var(--tile); font-size: 13px; font-weight: 600; white-space: nowrap; }
@@ -178,39 +187,40 @@ footer div { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 2
   .doc { padding: 28px 20px; border-radius: 24px; }
 }
 </style>
+<script>(function(){try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
 </head>
 <body>
-<nav class="cap" aria-label="Cheers"><a class="wm" href="./" aria-label="Cheers">Cheers<svg viewBox="0 0 256 256" aria-hidden="true"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"/></svg></a><a href="#how">How it works</a><a href="#questions">Questions</a></nav>
+<nav class="cap" aria-label="Cheers"><a class="wm" href="./" aria-label="Cheers">Cheers<svg viewBox="0 0 256 256" aria-hidden="true"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"/></svg></a><a href="#how">How it works</a><a href="#questions">Questions</a><button class="theme" type="button" aria-label="Switch to dark mode"><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button></nav>
 <main class="wrap">
 <div class="hero">
   <span class="tag">Coming soon to iPhone</span>
   <h1>Rate<svg class="hstar" viewBox="0 0 256 256" aria-hidden="true"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"/></svg> your drinks.<br>Share them with friends.</h1>
   <p class="lead">Take a photo of your drink, give it a rating, and see what your friends are having.</p>
-  <div class="window"><div class="ph side"><div class="scr has"><picture><source srcset="img/screen-rating-dark.jpg" media="(prefers-color-scheme: dark)"><img src="img/screen-rating.jpg" alt="The rating form, with a rating being chosen" loading="lazy"></picture></div><img class="frame" src="img/phone-frame.png" alt=""></div><div class="ph"><div class="scr has"><picture><source srcset="img/screen-home-dark.jpg" media="(prefers-color-scheme: dark)"><img src="img/screen-home.jpg" alt="The Cheers Home page, showing friends’ drinks" loading="lazy"></picture></div><img class="frame" src="img/phone-frame.png" alt=""></div><div class="ph side"><div class="scr has"><picture><source srcset="img/screen-profile-dark.jpg" media="(prefers-color-scheme: dark)"><img src="img/screen-profile.jpg" alt="A Cheers profile, with its top rated drinks" loading="lazy"></picture></div><img class="frame" src="img/phone-frame.png" alt=""></div></div>
+  <div class="window"><div class="ph side"><div class="scr has"><picture><source data-dark srcset="img/screen-rating-dark.jpg" media="(prefers-color-scheme: dark)"><img src="img/screen-rating.jpg" alt="The rating form, with a rating being chosen" loading="lazy"></picture></div><img class="frame" src="img/phone-frame.png" alt=""></div><div class="ph"><div class="scr has"><picture><source data-dark srcset="img/screen-home-dark.jpg" media="(prefers-color-scheme: dark)"><img src="img/screen-home.jpg" alt="The Cheers Home page, showing friends’ drinks" loading="lazy"></picture></div><img class="frame" src="img/phone-frame.png" alt=""></div><div class="ph side"><div class="scr has"><picture><source data-dark srcset="img/screen-profile-dark.jpg" media="(prefers-color-scheme: dark)"><img src="img/screen-profile.jpg" alt="A Cheers profile, with its top rated drinks" loading="lazy"></picture></div><img class="frame" src="img/phone-frame.png" alt=""></div></div>
 </div>
 
 <section id="how">
   <h2>How it works</h2>
   <ol class="steps">
     <li class="step"><div class="tile"><div class="ph"><div class="scr has"><picture><img src="img/screen-camera.jpg" alt="The Cheers camera, pointed at a drink" loading="lazy"></picture></div><img class="frame" src="img/phone-frame.png" alt=""></div></div><i>1</i><h3>Take a photo</h3><p>Point your phone at the bottle, can or glass.</p></li>
-    <li class="step"><div class="tile"><div class="ph"><div class="scr has"><picture><source srcset="img/screen-rating-dark.jpg" media="(prefers-color-scheme: dark)"><img src="img/screen-rating.jpg" alt="The rating form, with a rating being chosen" loading="lazy"></picture></div><img class="frame" src="img/phone-frame.png" alt=""></div></div><i>2</i><h3>Rate it<svg class="istar" viewBox="0 0 256 256" aria-hidden="true"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"/></svg></h3><p>Name it, give it a score out of 10, and add a caption or a place if you like.</p></li>
-    <li class="step"><div class="tile"><div class="ph"><div class="scr has"><picture><source srcset="img/screen-post-dark.jpg" media="(prefers-color-scheme: dark)"><img src="img/screen-post.jpg" alt="A finished post on Cheers" loading="lazy"></picture></div><img class="frame" src="img/phone-frame.png" alt=""></div></div><i>3</i><h3>Post it</h3><p>Your friends see it on their Home page.</p></li>
+    <li class="step"><div class="tile"><div class="ph"><div class="scr has"><picture><source data-dark srcset="img/screen-rating-dark.jpg" media="(prefers-color-scheme: dark)"><img src="img/screen-rating.jpg" alt="The rating form, with a rating being chosen" loading="lazy"></picture></div><img class="frame" src="img/phone-frame.png" alt=""></div></div><i>2</i><h3>Rate it<svg class="istar" viewBox="0 0 256 256" aria-hidden="true"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"/></svg></h3><p>Name it, give it a score out of 10, and add a caption or a place if you like.</p></li>
+    <li class="step"><div class="tile"><div class="ph"><div class="scr has"><picture><source data-dark srcset="img/screen-post-dark.jpg" media="(prefers-color-scheme: dark)"><img src="img/screen-post.jpg" alt="A finished post on Cheers" loading="lazy"></picture></div><img class="frame" src="img/phone-frame.png" alt=""></div></div><i>3</i><h3>Post it</h3><p>Your friends see it on their Home page.</p></li>
   </ol>
 </section>
 
 <section>
   <h2>Better with friends</h2>
   <div class="bento">
-    <div class="bcard span"><div><h3>See what your friends rate</h3><p>Home shows the drinks your friends have rated, with their photo and score.</p></div><div class="ph"><div class="scr has"><picture><source srcset="img/screen-home-dark.jpg" media="(prefers-color-scheme: dark)"><img src="img/screen-home.jpg" alt="The Cheers Home page, showing friends’ drinks" loading="lazy"></picture></div><img class="frame" src="img/phone-frame.png" alt=""></div></div>
-    <div class="bcard"><h3>Cheers the good ones</h3><p>Tap Cheers, or double-tap the photo, on a drink you like the look of.</p><div class="ph"><div class="scr has"><picture><source srcset="img/screen-cheered-dark.jpg" media="(prefers-color-scheme: dark)"><img src="img/screen-cheered.jpg" alt="The Home page, with a friend’s drink given a Cheers" loading="lazy"></picture></div><img class="frame" src="img/phone-frame.png" alt=""></div></div>
-    <div class="bcard"><h3>Have your say</h3><p>Leave a comment, reply to someone else’s, or give one a like.</p><div class="ph"><div class="scr has"><picture><source srcset="img/screen-comments-dark.jpg" media="(prefers-color-scheme: dark)"><img src="img/screen-comments.jpg" alt="The comments on a friend’s drink" loading="lazy"></picture></div><img class="frame" src="img/phone-frame.png" alt=""></div></div>
+    <div class="bcard span"><div><h3>See what your friends rate</h3><p>Home shows the drinks your friends have rated, with their photo and score.</p></div><div class="ph"><div class="scr has"><picture><source data-dark srcset="img/screen-home-dark.jpg" media="(prefers-color-scheme: dark)"><img src="img/screen-home.jpg" alt="The Cheers Home page, showing friends’ drinks" loading="lazy"></picture></div><img class="frame" src="img/phone-frame.png" alt=""></div></div>
+    <div class="bcard"><h3>Cheers the good ones</h3><p>Tap Cheers, or double-tap the photo, on a drink you like the look of.</p><div class="ph"><div class="scr has"><picture><source data-dark srcset="img/screen-cheered-dark.jpg" media="(prefers-color-scheme: dark)"><img src="img/screen-cheered.jpg" alt="The Home page, with a friend’s drink given a Cheers" loading="lazy"></picture></div><img class="frame" src="img/phone-frame.png" alt=""></div></div>
+    <div class="bcard"><h3>Have your say</h3><p>Leave a comment, reply to someone else’s, or give one a like.</p><div class="ph"><div class="scr has"><picture><source data-dark srcset="img/screen-comments-dark.jpg" media="(prefers-color-scheme: dark)"><img src="img/screen-comments.jpg" alt="The comments on a friend’s drink" loading="lazy"></picture></div><img class="frame" src="img/phone-frame.png" alt=""></div></div>
   </div>
 </section>
 
 <section>
   <h2>Your top shelf</h2>
   <div class="bento">
-    <div class="bcard span flip"><div><h3>Your best, at a glance</h3><p>Your profile keeps your top rated drinks at the top, with everything you’ve rated underneath.</p></div><div class="ph"><div class="scr has"><picture><source srcset="img/screen-profile-dark.jpg" media="(prefers-color-scheme: dark)"><img src="img/screen-profile.jpg" alt="A Cheers profile, with its top rated drinks" loading="lazy"></picture></div><img class="frame" src="img/phone-frame.png" alt=""></div></div>
+    <div class="bcard span flip"><div><h3>Your best, at a glance</h3><p>Your profile keeps your top rated drinks at the top, with everything you’ve rated underneath.</p></div><div class="ph"><div class="scr has"><picture><source data-dark srcset="img/screen-profile-dark.jpg" media="(prefers-color-scheme: dark)"><img src="img/screen-profile.jpg" alt="A Cheers profile, with its top rated drinks" loading="lazy"></picture></div><img class="frame" src="img/phone-frame.png" alt=""></div></div>
   </div>
 </section>
 
@@ -251,6 +261,27 @@ footer div { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 2
   <span class="tag">Coming soon to iPhone</span>
 </section>
 </main>
+<script>(function(){
+  var root = document.documentElement, button = document.querySelector(".theme");
+  var device = window.matchMedia("(prefers-color-scheme: dark)");
+  function chosen() { return root.getAttribute("data-theme"); }
+  function show() {
+    var dark = chosen() ? chosen() === "dark" : device.matches;
+    root.classList.toggle("is-dark", dark);
+    button.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+    document.querySelectorAll("source[data-dark]").forEach(function (s) {
+      s.media = chosen() ? (dark ? "all" : "not all") : "(prefers-color-scheme: dark)";
+    });
+  }
+  button.addEventListener("click", function () {
+    var next = root.classList.contains("is-dark") ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) {}
+    show();
+  });
+  if (device.addEventListener) device.addEventListener("change", show);
+  show();
+})();</script>
 <footer><a class="wm" href="./" aria-label="Cheers">Cheers<svg viewBox="0 0 256 256" aria-hidden="true"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"/></svg></a><div><a href="privacy/">Privacy policy</a><a href="terms/">Terms</a><a href="mailto:hello@cheers-drinks.co.uk">Contact</a></div><span>For people aged 18 and over</span></footer>
 </body>
 </html>
