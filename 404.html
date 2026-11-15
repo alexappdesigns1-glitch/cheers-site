@@ -66,10 +66,16 @@ img { display: block; max-width: 100%; }
 .is-dark .theme .sun { opacity: 0; transform: rotate(90deg) scale(.5); }
 .is-dark .theme .moon { opacity: 1; transform: none; }
 .cap.has-get .theme { margin-right: 0; }
-/* While switching, the whole page eases between its colours rather than
-   snapping (only then, so nothing else on the page is slowed). */
-.theme-fading body, .theme-fading body *:not(.knob):not(svg):not(svg *) { transition: background-color .2s ease, color .2s ease, box-shadow .2s ease, border-color .2s ease !important; }
-@media (prefers-reduced-motion: reduce) { .theme .knob, .theme svg, .theme { transition: none !important; } .theme-fading body, .theme-fading body * { transition: none !important; } }
+/* Switching cross-fades the whole page in one go (a View Transition: the
+   browser fades a picture of the old page into the new one), which stays
+   smooth where fading every colour separately stuttered. The switch is left
+   out of the fade, live, so its knob still slides. Browsers without View
+   Transitions change straight away. */
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .2s; animation-timing-function: ease; }
+.theme { view-transition-name: theme-switch; }
+::view-transition-group(theme-switch), ::view-transition-new(theme-switch) { animation: none; }
+::view-transition-old(theme-switch) { display: none; }
+@media (prefers-reduced-motion: reduce) { .theme .knob, .theme svg, .theme { transition: none !important; } }
 a:focus-visible { outline: 2px solid var(--text); outline-offset: 4px; border-radius: 8px; }
 
 .tag { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px; border-radius: 999px; background: var(--tile); font-size: 13px; font-weight: 600; white-space: nowrap; }
@@ -243,15 +249,16 @@ footer div { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 2
       s.media = chosen() ? (dark ? "all" : "not all") : "(prefers-color-scheme: dark)";
     });
   }
-  var fading;
+  var still = window.matchMedia("(prefers-reduced-motion: reduce)");
   button.addEventListener("click", function () {
     var next = root.classList.contains("is-dark") ? "light" : "dark";
-    root.classList.add("theme-fading");
-    clearTimeout(fading);
-    fading = setTimeout(function () { root.classList.remove("theme-fading"); }, 300);
-    root.setAttribute("data-theme", next);
-    try { sessionStorage.setItem("theme", next); } catch (e) {}
-    show();
+    function apply() {
+      root.setAttribute("data-theme", next);
+      try { sessionStorage.setItem("theme", next); } catch (e) {}
+      show();
+    }
+    if (document.startViewTransition && !still.matches) document.startViewTransition(apply);
+    else apply();
   });
   if (device.addEventListener) device.addEventListener("change", show);
   show();
