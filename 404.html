@@ -68,7 +68,7 @@ img { display: block; max-width: 100%; }
 .cap.has-get .theme { margin-right: 0; }
 /* While switching, the whole page eases between its colours rather than
    snapping (only then, so nothing else on the page is slowed). */
-.theme-fading body, .theme-fading body *:not(.knob):not(svg):not(svg *) { transition: background-color .45s ease, color .45s ease, box-shadow .45s ease, border-color .45s ease !important; }
+.theme-fading body, .theme-fading body *:not(.knob):not(svg):not(svg *) { transition: background-color .2s ease, color .2s ease, box-shadow .2s ease, border-color .2s ease !important; }
 @media (prefers-reduced-motion: reduce) { .theme .knob, .theme svg, .theme { transition: none !important; } .theme-fading body, .theme-fading body * { transition: none !important; } }
 a:focus-visible { outline: 2px solid var(--text); outline-offset: 4px; border-radius: 8px; }
 
@@ -248,7 +248,7 @@ footer div { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 2
     var next = root.classList.contains("is-dark") ? "light" : "dark";
     root.classList.add("theme-fading");
     clearTimeout(fading);
-    fading = setTimeout(function () { root.classList.remove("theme-fading"); }, 600);
+    fading = setTimeout(function () { root.classList.remove("theme-fading"); }, 300);
     root.setAttribute("data-theme", next);
     try { sessionStorage.setItem("theme", next); } catch (e) {}
     show();
