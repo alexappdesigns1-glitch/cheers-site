@@ -194,6 +194,8 @@ footer div { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 2
     document.getElementById("steps").hidden = false;
   } else if (post) {
     at.hidden = true;
+    document.getElementById("title").textContent = "Open this drink in Cheers";
+    document.getElementById("lead").textContent = "Drinks on Cheers are shared with friends. Get the app and add the person who sent this to see it.";
   } else {
     at.hidden = true;
     document.getElementById("title").textContent = "Page not found";

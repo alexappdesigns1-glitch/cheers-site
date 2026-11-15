@@ -1,0 +1,24 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "VMM6CWMUK9.uk.co.cheersdrinks.app"
+        ],
+        "components": [
+          {
+            "/": "/u/*"
+          },
+          {
+            "/": "/p/*"
+          }
+        ],
+        "appID": "VMM6CWMUK9.uk.co.cheersdrinks.app",
+        "paths": [
+          "/u/*",
+          "/p/*"
+        ]
+      }
+    ]
+  }
+}
